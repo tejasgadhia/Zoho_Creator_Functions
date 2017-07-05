@@ -1,0 +1,29 @@
+void API_Cloudinary(int rec_id)
+{
+  for each rec in YourFormHostingPhotos [ID == input.rec_id]
+  {
+    //getting file name. In this case Image is the field name for the Photo.
+    path = rec.Image.getSuffix("src");
+    path = path.getSuffix("\"").getPrefix("\"");
+    pos = path.lastIndexOf("/");
+    path = path.subString((pos + 1)).trim();
+
+    // Follow the same structure, but replace with the name of your app, your view and the public ID zoho gives ( long code before path )
+    file_foto = "https://creator.zohopublic.com/adminuser/appname/YourFormHostingPhotos_View1/" + rec.ID + "/Image/image-download/fbpuQZwu8tPUjwJzRKUkGMD9Qp2zNTWO3trbxGRZq10U2z98B3B0wYjCjq2paakWGWVzthaZPVtqqCp2HqhPSYztT5DA6eQUDvFp/" + path;
+    
+    //calling api to upload image to cloudinary
+    data = map();
+    data.put("api_key", "39585473838398113");
+    data.put("api_secret", "vAJZsqQuQfV20GdzT2oY7og5WsQ");
+    data.put("upload_preset", "creator_scripts");
+    data.put("file", file_foto);
+    resp = postUrl("https://api.cloudinary.com/v1_1/yourcloudinaryappname/auto/upload", data);
+    get_image_id = resp.executeXPath("/root/public_id/text()");
+    get_format = resp.executeXPath("/root/format/text()");
+    
+    //compressed image link
+    rec.Image = "get code from txt file attached."
+
+    // info rec.Added_Time +" - - "+rec.ID;
+  }
+} 
