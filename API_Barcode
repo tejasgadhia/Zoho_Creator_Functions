@@ -1,0 +1,7 @@
+void API_Barcode(int rec_id)
+{
+  //API Code
+  art = Collections [ID == input.rec_id];
+  barcodeart = art.UPC.toString();
+  art.Image = "<img src='http://barcodes4.me/barcode/qr/qrcode.jpg?value="+barcodeart+ "'>";
+} 
