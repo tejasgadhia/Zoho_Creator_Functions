@@ -1,0 +1,18 @@
+void API.CalcDistance(int id)
+{
+  d = FORMNAME [ID == input.id];
+  key = "";
+ 
+  //Get Address1
+  strAddress1 = "origins=" + d.Street + "," + d.City + "," + d.State + "," + d.PostalCode;
+  strAddress2 = "&destinations=" + d.Street1 + "," + d.City1 + "," + d.State1 + "," + d.PostalCode1;
+  
+  strFullData = "https://maps.googleapis.com/maps/api/distancematrix/json?" + strAddress1 + strAddress2 + "&sensor=false&key=" + key;
+  distance = getUrl(strFullData);
+  result = distance.toXML();
+  distxml = result.executeXPath("/root/rows/elements/distance/text/text()");
+  finaldist = distxml.removeAllAlpha().remove(",");
+  d.textDistance = finaldist;
+  d.Distance = finaldist.toDecimal();
+  info finaldist;
+} 
