@@ -1,0 +1,12 @@
+string API_Geolocation(string ip)
+{
+  //IPAddressLabs returns the geolocation of website visitors in real-time.
+  //Information returned includes city, country, zip code, area code, ISP, and latitude and longitude.
+  
+  ipaddress = getUrl("http://api.ipaddresslabs.com/iplocation/v1.7/locateip?key=SAKS7YOURKEY2T844Z&ip=" + input.ip + "&format=XML",false);
+  
+  response = ipaddress.get("responseText");
+  xmlResponse = response.toXML();
+  
+  result = response.executeXPath("/response/geolocation_data/postal_code/text()");
+}
