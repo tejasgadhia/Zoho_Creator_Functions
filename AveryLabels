@@ -1,0 +1,50 @@
+// Create a page in Zoho Creator and copy and paste the code below.
+// At the bottom look for the function for each rec and replace the name of the Form ( Sign_Ups ) as well as the field names with the ones on your application.
+// Ex. replace for each rec in Sign_Ups [Email != ""] with for each rec in YOURFORM [ID != null]
+
+//Copy and Paste Script is below.
+
+print = true
+content
+<%{%> 
+  <style>
+    body {
+      width: 8.5in;
+      margin: 0in .1875in;
+    }
+    .label{
+      /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+      width: 1.42in; /* plus .6 inches from padding */
+      height: 0.92in; /* plus .125 inches from padding */
+      padding: .125in .3in 0;
+      margin-right: .125in; /* the gutter */
+      text-align:left;
+      float: right;
+
+      text-align: center;
+      overflow: hidden;
+
+      outline: 1px dotted; /* outline doesn't occupy space like border does */
+    }
+    .page-break {
+      clear: left;
+      display:block;
+      page-break-after:always;
+    }
+    @page{
+      margin: 0.50in 0px 0px 0px;
+    }
+    </style>
+    
+    <%startRangeLeng = 0;
+    pageLimit = 100;
+    i = 0;
+    endRange = (startRangeLeng + pageLimit);
+    for each rec in Sign_Ups [Email != ""]
+    
+    {%> tucker
+    <%=rec.Email%><br><%=rec.Service%></div>
+    <div class="page-break"></div>
+    <div class="page-break"></div> <%}
+    i = (i + 1);
+}%> 
