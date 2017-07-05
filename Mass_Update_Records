@@ -1,0 +1,7 @@
+void Mass_Update_Records()
+{
+  for each record in FORMNAME [ID != 0];
+  {
+    record.FIELDNAME = "";
+  }
+}
