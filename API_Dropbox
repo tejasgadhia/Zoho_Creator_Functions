@@ -1,0 +1,22 @@
+void API_Dropbox(int id)
+{
+  solution = FORNAME [ID == input.id];
+  File_Name = "Carta Autorizacion" + solution.No_Poliza;
+  get_exte_1 = solution.Carta_Autorizaci_n.getSuffix(".");
+ 
+  headerMap_g1 = { "Content-type" : "application/json" };
+  requestBody_g1 = { "longUrl" : "https://creatorexport.zoho.com/safimedic/safimedic/Soluciones_Report/" + input.id + "/Carta_Autorizaci_n/download/" + solution.Carta_Autorizaci_n + "&privatelink=pzKREneCs2W92YOURZOHOCREATORPRIVIATELINK0Dyerqt5sBgVTVApJehSsjmD07xJOHsSfe4R6367rQJaYDqAsvRrdN6dgNvNa03FmtXD" };
+  
+  myString_1 = requestBody_g1.toString();
+  response_1 = postUrl("https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyBdFHGOOGLEAPIKEYMDQYct4rWXSdktIL1Q8", myString_1, headerMap_g1);
+  
+  newVar_1 = response_1.executeXPath("/root/id/text()");
+  
+  headerMap_d1 = { "Authorization" : "Bearer sEpyGkXhSIAAAAAAAAAAw8qSntzSCJkdBPNgiFjxsPAQxAyGD3LMw5GLbezcu5Ji" };
+  
+  requestBody_d1 = map();
+  
+  file_upload_1 = postUrl((("https://api.dropbox.com/1/save_url/auto/" + solution.MID + "/" + File_Name + "." + get_exte_1) + "?url=") + newVar_1, requestBody_d1, headerMap_d1,false);
+  
+  openUrl("#Form:Dropbox" + "", "Popup window", "height=100,width=100");
+} 
