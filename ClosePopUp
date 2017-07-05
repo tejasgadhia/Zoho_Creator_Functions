@@ -1,0 +1,4 @@
+// You can add the below script after an update has occurred from a Pop Up window.
+// This would make sure the window closes after the action.
+
+openUrl("#Script:dialog.close","same window");
