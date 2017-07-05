@@ -1,0 +1,27 @@
+string API.gettyImage(string search)
+{
+  uriValueResult = "";
+  headerGettyMap = map();
+  headerGettyMap.put("Api-Key", "2desa2YOURAPIKEYz9s7dp8d");
+  responseGetty = getUrl(("https://api.gettyimages.com/v3/search/images?phrase=") + input.search, headerGettyMap);
+  responseMap = responseGetty.toMap();
+  imagesValue = responseMap.get("images");
+  imagesList = imagesValue.toJSONList();
+  if (imagesList.size() > 0)
+  {
+    imagesMapValue = imagesList.get(0);
+    //info imagesMapValue;
+    imagesMap = imagesMapValue.toMap();
+    displaySizesValue = imagesMap.get(("display_sizes"));
+    //info displaySizesValue;
+    displaySizesList = displaySizesValue.toJSONList();
+    if (displaySizesList.size() > 0)
+    {
+      displaySizesMapValue = displaySizesList.get(0);
+      displaySizesMap = displaySizesMapValue.toMap();
+      uriValueResult = displaySizesMap.get("uri");
+    }
+  }
+  //info ((responseGetty).toMap()).get("images");
+  return uriValueResult;
+} 
