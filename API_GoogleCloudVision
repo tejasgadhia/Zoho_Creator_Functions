@@ -1,0 +1,38 @@
+//Google API Function: Google.imageToText
+
+string Google.imageToText(string imageUrl)
+
+{
+
+//Store the Image url
+
+postMap = Map();
+
+postMap.put("file_uri",imageUrl);
+
+base64Data = postUrl("http://officeexec.com/drive/mime.php",postMap);
+
+//API Key from Google
+
+apiKey = "AIyCuksIBGETYOUR OWN APIKEY1ViB";
+
+requestString = "{\"requests\": [{\"image\": {\"content\": \"" + base64Data + "\"},\"features\": [{\"maxResults\":2,\"type\": \"TEXT_DETECTION\"}]}]}";
+
+//Access Google API
+
+googleOCR = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey;
+
+ocrResponse = postUrl(googleOCR,requestString);
+
+responseList = ocrResponse.getJSON("responses").toJSONList();
+
+responseText = responseList.get(0).get("fullTextAnnotation").get("text");
+
+//Return the text
+
+return responseText;
+
+}
+
+// Please review additional details directly in the Google API documentation page
+// https://cloud.google.com/vision/docs/
